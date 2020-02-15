@@ -53,4 +53,18 @@ public class GameTest {
         assertEquals(1, game.getPlayerList().get(0).getHand().getCardsList().size());
         assertEquals(card1, game.getPlayerList().get(0).getHand().getCardsList().get(0));
     }
+
+    @Test
+    public void player_can_go_BUST(){
+        Card cardTen = new Card(SuitType.SPADES, FaceValueType.TEN);
+        Card cardTwo = new Card(SuitType.SPADES, FaceValueType.TWO);
+        Card cardQueen = new Card(SuitType.CLUBS, FaceValueType.QUEEN);
+        game.addPlayer(player1);
+        game.getPlayerList().get(0).takeACard(cardTen);
+        game.getPlayerList().get(0).takeACard(cardTwo);
+        game.getPlayerList().get(0).takeACard(cardQueen);
+        assertEquals("BUST", game.playerResult(player1));
+    }
+
+
 }

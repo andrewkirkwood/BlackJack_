@@ -29,10 +29,7 @@ public class Hand {
             }
             dumbValue -= deduction;
         }
-//        if (getAceList().size() == 1 && getNormalCardValue() < 10)
-
-        else
-        {
+        else {
             int deductionFor2Aces = 0;
             for(Card card : getAceList()){
                 deductionFor2Aces += 10;
@@ -40,7 +37,6 @@ public class Hand {
             deductionFor2Aces -= 10;
             dumbValue -= deductionFor2Aces;
         }
-
         return dumbValue;
     }
 
@@ -51,14 +47,6 @@ public class Hand {
     public void takeCard(Card card) {
         if (card.getFaceValue() == 11){
             this.aceList.add(card);
-//            if (aceList.size() == 1 && getValue() < 18 && getValue() > 1){
-//                int deduction = 0;
-//                for (Card i : getAceList()){
-//                    deduction += 10;
-//                }
-//                this.aceDeduction += deduction;
-//            }
-//            this.cards.add(card);
         }
         else if (card.getFaceValue() != 11){
             this.temporaryNormalCards.add(card);
@@ -79,5 +67,8 @@ public class Hand {
         return value;
     }
 
+    public int getFirstCardValue() {
+        return this.cards.get(0).getFaceValue();
+    }
 }
 

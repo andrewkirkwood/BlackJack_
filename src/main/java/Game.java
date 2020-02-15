@@ -23,4 +23,12 @@ public class Game {
     }
 
 
+    public String playerResult(Player player) {
+        if (player.getHand().getValue() > 21){
+            return "BUST";
+        }
+        else {
+            return "STILL IN THE GAME";
+        }
+    }
 }

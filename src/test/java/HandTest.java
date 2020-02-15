@@ -107,4 +107,11 @@ public class HandTest {
         hand.takeCard(card7);
         assertEquals(21, hand.getValue());
     }
+
+    @Test
+    public void dealer_can_check_first_card(){
+        hand.takeCard(card1);
+        hand.takeCard(card3);
+        assertEquals(11, hand.getFirstCardValue());
+    }
 }
