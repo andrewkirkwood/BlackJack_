@@ -11,9 +11,7 @@ public class HandTest {
     private Card card4;
     private Card card5;
     private Card card6;
-
-
-
+    private Card card7;
 
     @Before
     public void before(){
@@ -24,6 +22,7 @@ public class HandTest {
         card4 = new Card(SuitType.DIAMONDS , FaceValueType.ACE);
         card5 = new Card(SuitType.DIAMONDS , FaceValueType.TEN);
         card6 = new Card(SuitType.SPADES , FaceValueType.EIGHT);
+        card7 = new Card(SuitType.SPADES , FaceValueType.NINE);
 
     }
 
@@ -34,7 +33,7 @@ public class HandTest {
 
     @Test
     public void hand_value_starts_at_0_points(){
-        assertEquals(0,hand.getValue());
+        assertEquals(0,hand.getCardsList().size());
     }
 
     @Test
@@ -60,6 +59,7 @@ public class HandTest {
         hand.takeCard(card1);
         hand.takeCard(card3);
         assertEquals(12, hand.getValue());
+        assertEquals(0, hand.getNormalCardValue());
     }
 
     @Test
@@ -69,6 +69,42 @@ public class HandTest {
         hand.takeCard(card4);
         hand.takeCard(card5);
         hand.takeCard(card6);
+        assertEquals(21, hand.getValue());
+    }
+
+    @Test
+    public void hand_can_take_ACE_ACE_TWO(){
+        Card twoCard = new Card(SuitType.SPADES, FaceValueType.TWO);
+        hand.takeCard(card1);
+        hand.takeCard(card3);
+        hand.takeCard(twoCard);
+        assertEquals(14, hand.getValue());
+    }
+
+
+    @Test
+    public void hand_can_take_take_ACE_ACE_SEVEN(){
+        Card sevenCard = new Card(SuitType.SPADES, FaceValueType.SEVEN);
+        hand.takeCard(card1);
+        hand.takeCard(card3);
+        hand.takeCard(sevenCard);
+        assertEquals(19, hand.getValue());
+    }
+
+    @Test
+    public void hand_can_take_take_ACE_ACE_EIGHT(){
+        Card eightCard = new Card(SuitType.SPADES, FaceValueType.EIGHT);
+        hand.takeCard(card1);
+        hand.takeCard(card3);
+        hand.takeCard(eightCard);
+        assertEquals(20, hand.getValue());
+    }
+
+    @Test
+    public void hand_can_take_ACE_ACE_NINE(){
+        hand.takeCard(card1);
+        hand.takeCard(card3);
+        hand.takeCard(card7);
         assertEquals(21, hand.getValue());
     }
 }
