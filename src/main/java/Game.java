@@ -35,10 +35,10 @@ public class Game {
     }
 
     public String getWinner(Player player, Dealer dealer) {
-        if (player.getHand().getValue() > dealer.getHand().getValue() ){
+        if (player.getHand().getValue() > dealer.getHand().getValue() && player.getHand().getValue() <= 21){
             return "PLAYER WINS";
         }
-        else if (dealer.getHand().getValue() > player.getHand().getValue() ){
+        else if (dealer.getHand().getValue() > player.getHand().getValue() && dealer.getHand().getValue() <= 21){
             return "DEALER WINS";
         }
 
