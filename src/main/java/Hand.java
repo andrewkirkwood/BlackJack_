@@ -32,8 +32,12 @@ public class Hand {
     public void takeCard(Card card) {
         if (card.getFaceValue() == 11){
             this.aceList.add(card);
-            if (aceList.size() == 1){
-                this.aceDeduction += 10;
+            if (aceList.size() == 1 && getValue() < 18 && getValue() > 1){
+                int deduction = 0;
+                for (Card i : getAceList()){
+                    deduction += 10;
+                }
+                this.aceDeduction += deduction;
             }
             this.cards.add(card);
         }
@@ -42,5 +46,10 @@ public class Hand {
             this.temporaryNormalCards.add(card);
         }
     }
+
+    public ArrayList<Card> getAceList(){
+        return this.aceList;
+    }
+
 }
 

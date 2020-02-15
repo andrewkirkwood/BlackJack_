@@ -61,14 +61,14 @@ public class HandTest {
         hand.takeCard(card3);
         assertEquals(12, hand.getValue());
     }
-//
-//    @Test
-//    public void hand_can_take_EIGHT_TEN_ACE_ACE_ACE(){
-//        hand.takeCard(card1);
-//        hand.takeCard(card3);
-//        hand.takeCard(card4);
-//        hand.takeCard(card5);
-//        hand.takeCard(card6);
-//        assertEquals(21, hand.getValue());
-//    }
+
+    @Test
+    public void hand_can_take_EIGHT_TEN_ACE_ACE_ACE(){
+        hand.takeCard(card1);
+        hand.takeCard(card3);
+        hand.takeCard(card4);
+        hand.takeCard(card5);
+        hand.takeCard(card6);
+        assertEquals(21, hand.getValue());
+    }
 }

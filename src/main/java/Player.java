@@ -7,9 +7,9 @@ public class Player {
         this.hand = new Hand();
     }
 
-//    public void takeACard(Card card){
-//        this.card = card;
-//    }
+   public void takeACard(Card card){
+        this.hand.takeCard(card);
+    }
 //
 //    public Card giveBackCard(){
 //        Card cardycard = this.card;
@@ -24,4 +24,6 @@ public class Player {
     public Hand getHand() {
         return this.hand;
     }
+
+
 }
