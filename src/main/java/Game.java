@@ -46,4 +46,22 @@ public class Game {
             return "ERROR";
         }
     }
+
+    public void shouldDealerTwistOrStick(Card card) {
+        if (getDealer().getHand().getValue() < 16) {
+            getDealer().getHand().takeCard(card);
+        }
+        else if (getDealer().getHand().getValue() >= 16){
+            return;
+        }
+    }
+
+    public void shouldPlayerTwistOrStick(Player player, Card card, int instruction) {
+        if (instruction == 0){
+            return;
+        }
+        else if(instruction == 1){
+            this.getPlayerList().get(0).getHand().takeCard(card);
+        }
+    }
 }

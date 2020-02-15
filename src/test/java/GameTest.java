@@ -102,5 +102,51 @@ public class GameTest {
         assertEquals("DEALER WINS", game.getWinner(game.getPlayerList().get(0), game.getDealer()));
     }
 
+    @Test
+    public void dealer_twists_when_value_below_16(){
+        Card cardJack = new Card(SuitType.HEARTS, FaceValueType.JACK);
+        Card cardFive= new Card(SuitType.CLUBS, FaceValueType.FIVE);
+        game.getDealer().takeCard(cardJack);
+        game.getDealer().takeCard(cardFive);
+
+        Card thirdCard = new Card(SuitType.SPADES, FaceValueType.SEVEN);
+        game.shouldDealerTwistOrStick(thirdCard);
+        assertEquals(3, game.getDealer().getHand().getCardsList().size());
+    }
+
+    @Test
+    public void dealer_stick_when_hand_value_above_16(){
+        Card cardJack = new Card(SuitType.HEARTS, FaceValueType.JACK);
+        Card cardSix= new Card(SuitType.CLUBS, FaceValueType.SIX);
+        game.getDealer().takeCard(cardJack);
+        game.getDealer().takeCard(cardSix);
+
+        Card thirdCard = new Card(SuitType.SPADES, FaceValueType.SEVEN);
+        game.shouldDealerTwistOrStick(thirdCard);
+        assertEquals(2, game.getDealer().getHand().getCardsList().size());
+    }
+
+    @Test public void player_can_stick_with_hand(){
+        Card cardTen = new Card(SuitType.SPADES, FaceValueType.TEN);
+        Card cardTwo = new Card(SuitType.SPADES, FaceValueType.TWO);
+        Card cardSeven = new Card(SuitType.CLUBS, FaceValueType.SEVEN);
+        game.addPlayer(player1);
+        game.getPlayerList().get(0).takeACard(cardTen);
+        game.getPlayerList().get(0).takeACard(cardTwo);
+        game.shouldPlayerTwistOrStick(game.getPlayerList().get(0), cardSeven, 0);
+        assertEquals(2, game.getPlayerList().get(0).getHand().getCardsList().size());
+    }
+
+    @Test public void player_can_twist_with_hand(){
+        Card cardTen = new Card(SuitType.SPADES, FaceValueType.TEN);
+        Card cardTwo = new Card(SuitType.SPADES, FaceValueType.TWO);
+        Card cardSeven = new Card(SuitType.CLUBS, FaceValueType.SEVEN);
+        game.addPlayer(player1);
+        game.getPlayerList().get(0).takeACard(cardTen);
+        game.getPlayerList().get(0).takeACard(cardTwo);
+        game.shouldPlayerTwistOrStick(game.getPlayerList().get(0), cardSeven, 1);
+        assertEquals(3, game.getPlayerList().get(0).getHand().getCardsList().size());
+    }
+
 
 }

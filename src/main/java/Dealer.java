@@ -31,5 +31,7 @@ public class Dealer {
     public void takeCard(Card card) {
         this.hand.getCardsList().add(card);
     }
+
+
 }
 
