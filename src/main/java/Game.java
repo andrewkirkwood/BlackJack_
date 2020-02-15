@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.BitSet;
 
 public class Game {
     private ArrayList<Player> players;
@@ -27,8 +26,24 @@ public class Game {
         if (player.getHand().getValue() > 21){
             return "BUST";
         }
-        else {
+        else if (player.getHand().getValue() < 21){
             return "STILL IN THE GAME";
+        }
+        else {
+            return "ERROR";
+        }
+    }
+
+    public String getWinner(Player player, Dealer dealer) {
+        if (player.getHand().getValue() > dealer.getHand().getValue() ){
+            return "PLAYER WINS";
+        }
+        else if (dealer.getHand().getValue() > player.getHand().getValue() ){
+            return "DEALER WINS";
+        }
+
+        else {
+            return "ERROR";
         }
     }
 }

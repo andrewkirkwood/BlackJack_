@@ -114,4 +114,15 @@ public class HandTest {
         hand.takeCard(card3);
         assertEquals(11, hand.getFirstCardValue());
     }
+    @Test
+    public void hand_can_take_TEN_TWO_QUEEN(){
+        Card cardTen = new Card(SuitType.SPADES, FaceValueType.TEN);
+        Card cardTwo = new Card(SuitType.SPADES, FaceValueType.TWO);
+        Card cardQueen = new Card(SuitType.CLUBS, FaceValueType.QUEEN);
+        hand.takeCard(cardTen);
+        hand.takeCard(cardTwo);
+        hand.takeCard(cardQueen);
+        assertEquals(22, hand.getValue());
+    }
+
 }

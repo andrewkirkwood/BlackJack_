@@ -63,7 +63,43 @@ public class GameTest {
         game.getPlayerList().get(0).takeACard(cardTen);
         game.getPlayerList().get(0).takeACard(cardTwo);
         game.getPlayerList().get(0).takeACard(cardQueen);
+        assertEquals(22, game.getPlayerList().get(0).getHand().getValue());
         assertEquals("BUST", game.playerResult(player1));
+    }
+
+    @Test
+    public void determine_winner_is_player(){
+        Card cardTen = new Card(SuitType.SPADES, FaceValueType.TEN);
+        Card cardTwo = new Card(SuitType.SPADES, FaceValueType.TWO);
+        Card cardNine = new Card(SuitType.CLUBS, FaceValueType.NINE);
+        game.addPlayer(player1);
+        game.getPlayerList().get(0).takeACard(cardTen);
+        game.getPlayerList().get(0).takeACard(cardTwo);
+        game.getPlayerList().get(0).takeACard(cardNine);
+
+        Card cardEight = new Card(SuitType.HEARTS, FaceValueType.EIGHT);
+        Card cardThree = new Card(SuitType.CLUBS, FaceValueType.THREE);
+        game.getDealer().takeCard(cardEight);
+        game.getDealer().takeCard(cardEight);
+        assertEquals("PLAYER WINS", game.getWinner(game.getPlayerList().get(0), game.getDealer()));
+    }
+
+    @Test
+    public void determine_winner_is_dealer(){
+        Card cardTen = new Card(SuitType.SPADES, FaceValueType.TEN);
+        Card cardTwo = new Card(SuitType.SPADES, FaceValueType.TWO);
+        Card cardSeven = new Card(SuitType.CLUBS, FaceValueType.SEVEN);
+        game.addPlayer(player1);
+        game.getPlayerList().get(0).takeACard(cardTen);
+        game.getPlayerList().get(0).takeACard(cardTwo);
+        game.getPlayerList().get(0).takeACard(cardSeven);
+
+        Card cardJack = new Card(SuitType.HEARTS, FaceValueType.JACK);
+        Card cardQueen= new Card(SuitType.CLUBS, FaceValueType.QUEEN);
+        game.getDealer().takeCard(cardJack);
+        game.getDealer().takeCard(cardQueen);
+
+        assertEquals("DEALER WINS", game.getWinner(game.getPlayerList().get(0), game.getDealer()));
     }
 
 

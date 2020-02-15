@@ -19,7 +19,10 @@ public class Hand {
         for (Card card : this.cards){
             dumbValue += card.getFaceValue();
         }
-        if (getNormalCardValue() > 2 && getNormalCardValue() < 19){
+        if (getAceList().size() == 0) {
+            return dumbValue;
+        }
+        else if (getNormalCardValue() > 2 && getNormalCardValue() < 19){
             int deduction = 0;
             for (Card card : getAceList()){
                 deduction += 10;
